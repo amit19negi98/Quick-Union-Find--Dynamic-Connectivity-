@@ -6,11 +6,15 @@ import java.lang.*;
 
 
 /* Name of the class has to be "Main" only if the class is public. */
+/* Defining quickunion class*/ 
 class quickunion
 {
-	public int[] id;
-	public int[] size;
+	public int[] id;   // Array to hold the root of each node
+	public int[] size;	// Array to hold the size of each tree with current node as root
 	
+	/* Constructor to initialise values to id[] and size[]. 
+	 * Initialise every node as its own root.
+	 * Initialise size of every node to 1. */
 	public quickunion(int N)
 	{
 		id = new int[N];
@@ -22,6 +26,8 @@ class quickunion
 		}
 	}
 	
+	/* Method to find root of a given node. If id of a given node is same as that node
+	 * then that node is the root of that particular tree */
 	private int root(int a)
 	{
 		while(id[a]!=a)
@@ -32,11 +38,16 @@ class quickunion
 		return a;
 	}
 	
+	/* Method to check if two nodes are connected or not. Returns true if both nodes
+	 * have the same root other false. */
 	boolean connected(int p, int q)
 	{
 		return (root(p) == root(q));
 	}
 	
+	/* Method to connect two given nodes. Find root of the given nodes. Check the size
+	 * of the trees under both roots and connect the smaller tree under the larger one.
+	 * Add the size of the smaller tree to the larger one. */
 	public void union(int p, int q)
 	{
 	    int	pr = root(p);
@@ -53,7 +64,7 @@ class quickunion
 		}
 	}
 	
-	
+	/* Main function */
 	public static void main (String[] args) throws java.lang.Exception
 	{
 		Scanner scan = new Scanner(System.in);
